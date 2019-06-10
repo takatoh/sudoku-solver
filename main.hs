@@ -47,13 +47,13 @@ cellToChar (Perhaps xs)  = '0'
 
 
 solv :: Board -> Maybe Board
-solv board = case (findParhaps board) of
+solv board = case (findPerhaps board) of
                Just (Perhaps xs, pos) -> pickUp $ map (solv . replace board pos) xs
                Nothing                -> judge board
 
 
-findParhaps :: Board -> Maybe (Cell, (Int, Int))
-findParhaps = undefined
+findPerhaps :: Board -> Maybe (Cell, (Int, Int))
+findPerhaps = undefined
 
 
 pickUp :: [Maybe Board] -> Maybe Board
