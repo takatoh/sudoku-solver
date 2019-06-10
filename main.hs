@@ -1,13 +1,14 @@
 module Main where
 
 import System.Environment ( getArgs )
+import Data.Char
 
 
 data Cell = Confirmed Int
           | Perhaps [Int]
           deriving (Show, Eq)
 
-type Board = [Cell]
+type Board = [[Cell]]
 
 
 main :: IO ()
@@ -18,7 +19,16 @@ main = do argv <- getArgs
 
 
 parseBoard :: String -> Board
-parseBoard = undefined
+parseBoard cs = map stringToCells $ lines cs
+
+
+stringToCells :: String -> [Cell]
+stringToCells s = map charToCell s
+
+
+charToCell :: Char -> Cell
+charToCell ' ' = Perhaps [1, 2, 3, 4, 5, 6, 7, 8, 9]
+charToCell c   = Confirmed (ord c - 48)
 
 
 printBoard :: Board -> IO ()
