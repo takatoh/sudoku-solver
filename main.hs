@@ -12,12 +12,13 @@ type Board = [Cell]
 
 main :: IO ()
 main = do argv <- getArgs
-          let board = loadBoard $ head argv
+          cs <- readFile $ head argv
+          let board = parseBoard cs
           printBoard board
 
 
-loadBoard :: String -> Board
-loadBoard = undefined
+parseBoard :: String -> Board
+parseBoard = undefined
 
 
 printBoard :: Board -> IO ()
