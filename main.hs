@@ -71,7 +71,10 @@ findP' b i (j:js) = case ((b !! i) !! j) of
 
 
 pickUp :: [Maybe Board] -> Maybe Board
-pickUp = undefined
+pickUp [] = Nothing
+pickUp (x:xs) = case x of
+                  Just b  -> Just b
+                  Nothing -> pickUp xs
 
 
 replace :: Board -> (Int, Int) -> Int -> Board
