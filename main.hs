@@ -32,4 +32,13 @@ charToCell c   = Confirmed (ord c - 48)
 
 
 printBoard :: Board -> IO ()
-printBoard = undefined
+printBoard b = putStr $ unlines $ map cellsToString b
+
+
+cellsToString :: [Cell] -> String
+cellsToString cs = map cellToChar cs
+
+
+cellToChar :: Cell -> Char
+cellToChar (Confirmed x) = chr $ x + 48
+cellToChar (Perhaps xs)  = '0'
