@@ -90,4 +90,16 @@ replace' row j x = let f = take j row in
 
 
 judge :: Board -> Maybe Board
-judge = undefined
+judge b = if (and [judgeRows b, judgeCols b, judgeBlocks b]) then Just b else Nothing
+
+
+judgeRows :: Board -> Bool
+judgeRows = undefined
+
+
+judgeCols :: Board -> Bool
+judgeCols = undefined
+
+
+judgeBlocks :: Board -> Bool
+judgeBlocks = undefined
