@@ -103,7 +103,15 @@ judgeCols b = and $ map (\r -> sumCells r == 45) $ transpose b
 
 
 judgeBlocks :: Board -> Bool
-judgeBlocks = undefined
+judgeBlocks board = and $ map (\b -> sumCells b == 45) $ splitToBlocks board
+
+
+splitToBlocks :: Board -> [[Cell]]
+splitToBlocks board = concat $ map (map concat) $ map transpose $ split3 $ map split3 board
+
+
+split3 :: [a] -> [[a]]
+split3 xs = [take 3 xs, take 3 $ drop 3 xs, drop 6 xs]
 
 
 sumCells :: [Cell] -> Int
