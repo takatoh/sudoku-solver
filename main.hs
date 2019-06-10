@@ -78,7 +78,15 @@ pickUp (x:xs) = case x of
 
 
 replace :: Board -> (Int, Int) -> Int -> Board
-replace = undefined
+replace board (i, j) x = let f = take i board in
+                         let b = drop (i+1) board in
+                         f ++ [replace' (board !! i) j x] ++ b
+
+
+replace' :: [Cell] -> Int -> Int -> [Cell]
+replace' row j x = let f = take j row in
+                   let b = drop (j+1) row in
+                   f ++ [Confirmed x] ++ b
 
 
 judge :: Board -> Maybe Board
