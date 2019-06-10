@@ -18,7 +18,7 @@ main = do argv <- getArgs
           let board = parseBoard cs
           case (solv board) of
             Just b  -> printBoard b
-            Nothing -> putStrLn "Fialed to solve."
+            Nothing -> putStrLn "Failed to solve."
 
 
 parseBoard :: String -> Board
