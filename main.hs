@@ -103,3 +103,7 @@ judgeCols = undefined
 
 judgeBlocks :: Board -> Bool
 judgeBlocks = undefined
+
+
+sumCells :: [Cell] -> Int
+sumCells cs = sum [x | Confirmed x <- cs]
