@@ -53,7 +53,21 @@ solv board = case (findPerhaps board) of
 
 
 findPerhaps :: Board -> Maybe (Cell, (Int, Int))
-findPerhaps = undefined
+findPerhaps b = findP b [0..8]
+
+
+findP :: Board -> [Int] -> Maybe (Cell, (Int, Int))
+findP b []     = Nothing
+findP b (i:is) = case (findP' b i [0..8]) of
+                   Nothing -> findP b is
+                   Just x  -> Just x
+
+
+findP' :: Board -> Int -> [Int] -> Maybe (Cell, (Int, Int))
+findP' b i []     = Nothing
+findP' b i (j:js) = case ((b !! i) !! j) of
+                      Perhaps xs  -> Just (Perhaps xs, (i, j))
+                      Confirmed x -> findP' b i js
 
 
 pickUp :: [Maybe Board] -> Maybe Board
