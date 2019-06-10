@@ -15,7 +15,9 @@ main :: IO ()
 main = do argv <- getArgs
           cs <- readFile $ head argv
           let board = parseBoard cs
-          printBoard board
+          case (solv board) of
+            Just b  -> printBoard b
+            Nothing -> putStrLn "Fialed to solve."
 
 
 parseBoard :: String -> Board
@@ -42,3 +44,25 @@ cellsToString cs = map cellToChar cs
 cellToChar :: Cell -> Char
 cellToChar (Confirmed x) = chr $ x + 48
 cellToChar (Perhaps xs)  = '0'
+
+
+solv :: Board -> Maybe Board
+solv board = case (findParhaps board) of
+               Just (Perhaps xs, pos) -> pickUp $ map (solv . replace board pos) xs
+               Nothing                -> judge board
+
+
+findParhaps :: Board -> Maybe (Cell, (Int, Int))
+findParhaps = undefined
+
+
+pickUp :: [Maybe Board] -> Maybe Board
+pickUp = undefined
+
+
+replace :: Board -> (Int, Int) -> Int -> Board
+replace = undefined
+
+
+judge :: Board -> Maybe Board
+judge = undefined
