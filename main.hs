@@ -2,6 +2,7 @@ module Main where
 
 import System.Environment ( getArgs )
 import Data.Char
+import Data.List
 
 
 data Cell = Confirmed Int
@@ -94,11 +95,11 @@ judge b = if (and [judgeRows b, judgeCols b, judgeBlocks b]) then Just b else No
 
 
 judgeRows :: Board -> Bool
-judgeRows = undefined
+judgeRows b = and $ map (\r -> sumCells r == 45) b
 
 
 judgeCols :: Board -> Bool
-judgeCols = undefined
+judgeCols b = and $ map (\r -> sumCells r == 45) $ transpose b
 
 
 judgeBlocks :: Board -> Bool
