@@ -102,7 +102,7 @@ findP' b i (j:js) = case ((b !! i) !! j) of
 
 
 pickUp :: [Maybe Board] -> Maybe Board
-pickUp [] = Nothing
+pickUp []     = Nothing
 pickUp (x:xs) = case x of
                   Just b  -> Just b
                   Nothing -> pickUp xs
