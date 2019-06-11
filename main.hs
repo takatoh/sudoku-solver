@@ -48,9 +48,10 @@ cellToChar (Perhaps xs)  = '0'
 
 
 solv :: Board -> Maybe Board
-solv board = case (findPerhaps $ ommit board) of
-               Just (Perhaps xs, pos) -> pickUp $ map (solv . replace board pos) xs
-               Nothing                -> judge board
+solv board = let b = ommit board in
+             case (findPerhaps b) of
+               Just (Perhaps xs, pos) -> pickUp $ map (solv . replace b pos) xs
+               Nothing                -> judge b
 
 
 ommit :: Board -> Board
