@@ -76,11 +76,11 @@ ommitRow xs = let cs = [c | Confirmed c <- xs] in
 
 
 ommitCols :: Board -> Board
-ommitCols = undefined
+ommitCols b = transpose $ ommitRows $ transpose b
 
 
 ommitBlocks :: Board -> Board
-ommitBlocks = undefined
+ommitBlocks b = splitToBlocks $ ommitRows $ splitToBlocks b
 
 
 findPerhaps :: Board -> Maybe (Cell, (Int, Int))
