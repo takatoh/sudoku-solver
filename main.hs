@@ -4,6 +4,7 @@ import System.Environment ( getArgs )
 import Data.Char
 import Data.List
 
+--------------------------------------------------------------------------------
 
 data Cell = Confirmed Int
           | Perhaps [Int]
@@ -11,6 +12,7 @@ data Cell = Confirmed Int
 
 type Board = [[Cell]]
 
+--------------------------------------------------------------------------------
 
 main :: IO ()
 main = do argv <- getArgs
@@ -20,6 +22,7 @@ main = do argv <- getArgs
             Just b  -> printBoard b
             Nothing -> putStrLn "Failed to solve."
 
+--------------------------------------------------------------------------------
 
 parseBoard :: String -> Board
 parseBoard cs = map stringToCells $ lines cs
@@ -46,6 +49,7 @@ cellToChar :: Cell -> Char
 cellToChar (Confirmed x) = chr $ x + 48
 cellToChar (Perhaps xs)  = '0'
 
+--------------------------------------------------------------------------------
 
 solv :: Board -> Maybe Board
 solv board = let b = ommit board in
