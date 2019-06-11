@@ -58,7 +58,21 @@ ommit b = ommitBlocks $ ommitCols $ ommitRows b
 
 
 ommitRows :: Board -> Board
-ommitRows = undefined
+ommitRows b = map ommitRow b
+
+
+ommitRow :: [Cell] -> [Cell]
+ommitRow xs = let cs = [c | Confirmed c <- xs] in
+              ommitRow' cs xs
+  where
+    ommitRow' :: [Int] -> [Cell] -> [Cell]
+    ommitRow' ys []     = []
+    ommitRow' ys (z:zs) = case z of
+                            Confirmed a -> Confirmed a : ommitRow' ys zs
+                            Perhaps as  -> let bs = filter (\a -> not $ elem a ys) as in
+                                           if length bs == 1
+                                             then Confirmed (bs !! 0) : ommitRow' ys zs
+                                             else Perhaps bs : ommitRow' ys zs
 
 
 ommitCols :: Board -> Board
