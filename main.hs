@@ -66,11 +66,11 @@ parseArgs argv = case getOpt Permute options argv of
 --------------------------------------------------------------------------------
 
 parseBoard :: String -> Board
-parseBoard cs = map stringToCells $ lines cs
+parseBoard = map stringToCells . lines
 
 
 stringToCells :: String -> [Cell]
-stringToCells s = map charToCell s
+stringToCells = map charToCell
 
 
 charToCell :: Char -> Cell
@@ -79,11 +79,11 @@ charToCell c   = Confirmed (ord c - 48)
 
 
 printBoard :: Board -> IO ()
-printBoard b = putStr $ unlines $ map cellsToString b
+printBoard = putStr . unlines . map cellsToString
 
 
 cellsToString :: [Cell] -> String
-cellsToString cs = map cellToChar cs
+cellsToString = map cellToChar
 
 
 cellToChar :: Cell -> Char
@@ -100,11 +100,11 @@ solv board = let b = ommit board in
 
 
 ommit :: Board -> Board
-ommit b = ommitBlocks $ ommitCols $ ommitRows b
+ommit = ommitBlocks . ommitCols . ommitRows
 
 
 ommitRows :: Board -> Board
-ommitRows b = map ommitRow b
+ommitRows = map ommitRow
 
 
 ommitRow :: [Cell] -> [Cell]
@@ -122,15 +122,15 @@ ommitRow xs = let cs = [c | Confirmed c <- xs] in
 
 
 ommitCols :: Board -> Board
-ommitCols b = transpose $ ommitRows $ transpose b
+ommitCols = transpose . ommitRows . transpose
 
 
 ommitBlocks :: Board -> Board
-ommitBlocks b = splitToBlocks $ ommitRows $ splitToBlocks b
+ommitBlocks = splitToBlocks . ommitRows . splitToBlocks
 
 
 findPerhaps :: Board -> Maybe (Cell, (Int, Int))
-findPerhaps b = findP b [0..8]
+findPerhaps = flip findP [0..8]
 
 
 findP :: Board -> [Int] -> Maybe (Cell, (Int, Int))
@@ -171,19 +171,19 @@ judge b = if (and [judgeRows b, judgeCols b, judgeBlocks b]) then Just b else No
 
 
 judgeRows :: Board -> Bool
-judgeRows b = and $ map (\r -> sumCells r == 45) b
+judgeRows = and . map (\r -> sumCells r == 45)
 
 
 judgeCols :: Board -> Bool
-judgeCols b = and $ map (\r -> sumCells r == 45) $ transpose b
+judgeCols = and . map (\r -> sumCells r == 45) . transpose
 
 
 judgeBlocks :: Board -> Bool
-judgeBlocks board = and $ map (\b -> sumCells b == 45) $ splitToBlocks board
+judgeBlocks = and . map (\b -> sumCells b == 45) . splitToBlocks
 
 
 splitToBlocks :: Board -> [[Cell]]
-splitToBlocks board = concat $ map (map concat) $ map transpose $ split3 $ map split3 board
+splitToBlocks = concat . map (map concat) . map transpose . split3 . map split3
 
 
 split3 :: [a] -> [[a]]
