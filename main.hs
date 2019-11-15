@@ -88,7 +88,7 @@ cellsToString = map cellToChar
 
 cellToChar :: Cell -> Char
 cellToChar (Confirmed x) = chr $ x + 48
-cellToChar (Perhaps xs)  = '0'
+cellToChar (Perhaps xs)  = ' '
 
 --------------------------------------------------------------------------------
 
