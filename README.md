@@ -12,7 +12,7 @@ GitHub からクローンして
 
 make します。
 
-`make`
+`make build`
 
 sudoku.exe ファイルができるので、パスの通った適当なディレクトリにコピーしてください。
 
