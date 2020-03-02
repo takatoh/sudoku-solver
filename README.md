@@ -3,16 +3,18 @@ sudoku-solver
 
 数独とかナンプレとか呼ばれるパズルを解くプログラムです。
 
+コンパイルするには Haskell のコンパイラが必要です。
+
 Install
 -------
 
 GitHub からクローンして
 
-`git clone https://github.com/takatoh/sudoku-solver.git`
+    git clone https://github.com/takatoh/sudoku-solver.git
 
 make します。
 
-`make build`
+    make build
 
 sudoku.exe ファイルができるので、パスの通った適当なディレクトリにコピーしてください。
 
@@ -26,7 +28,7 @@ Usage
 できた入力ファイル（例えば example.txt）を引数にして sudoku.exeを
 実行します。
 
-`sudoku.exe example.txt`
+    sudoku.exe example.txt
 
 うまく解ければ、答えが表示されます。
 
