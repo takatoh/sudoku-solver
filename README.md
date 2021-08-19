@@ -1,22 +1,23 @@
-sudoku-solver
+Ssudoku Solver
 =============
 
 数独とかナンプレとか呼ばれるパズルを解くプログラムです。
 
-コンパイルするには Haskell のコンパイラが必要です。
+プログラムは Haskell で書かれているので、[Stack](https://docs.haskellstack.org/en/stable/README/) が必要です。
 
 Install
 -------
 
 GitHub からクローンして
 
-    git clone https://github.com/takatoh/sudoku-solver.git
+    > git clone https://github.com/takatoh/sudoku-solver.git
 
-make します。
+`stack setup` と `stack install` を実行します。
 
-    make build
+    > stack setup
+    > stack install
 
-sudoku.exe ファイルができるので、パスの通った適当なディレクトリにコピーしてください。
+これで、実行ファイル sudoku.exe がインストールされます。
 
 Usage
 -----
@@ -25,10 +26,10 @@ Usage
 9文字×9行に書きます。このとき、数字の入っているマスはその数字を、空白のマスは
 空白文字とします。
 
-できた入力ファイル（例えば example.txt）を引数にして sudoku.exeを
+できた入力ファイル（例えば example.txt）を引数にして sudoku.exe を
 実行します。
 
-    sudoku.exe example.txt
+    > sudoku.exe example.txt
 
 うまく解ければ、答えが表示されます。
 
