@@ -7,8 +7,8 @@ cabal-version: 1.12
 name:           sudoku-solver
 version:        1.1.0
 description:    Solve a puzzle called Sudoku or Number Place.
-homepage:       https://github.com/githubuser/sudoku-solver#readme
-bug-reports:    https://github.com/githubuser/sudoku-solver/issues
+homepage:       https://github.com/takatoh/sudoku-solver#readme
+bug-reports:    https://github.com/takatoh/sudoku-solver/issues
 author:         takatoh
 maintainer:     takatoh.m@gmail.com
 copyright:      2019-2021 takatoh
@@ -20,7 +20,7 @@ extra-source-files:
 
 source-repository head
   type: git
-  location: https://github.com/githubuser/sudoku-solver
+  location: https://github.com/takatoh/sudoku-solver
 
 library
   exposed-modules:
