@@ -1,0 +1,49 @@
+name:                sudoku-solver
+version:             1.1.0
+github:              "githubuser/sudoku-solver"
+license:             MIT
+author:              "takatoh"
+maintainer:          "takatoh.m@gmail.com"
+copyright:           "2019-2021 takatoh"
+
+extra-source-files:
+- README.md
+- LICENSE.txt
+#- ChangeLog.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Solve a puzzle called Sudoku or Number Place.
+
+dependencies:
+- base >= 4.7 && < 5
+
+library:
+  source-dirs: src
+
+executables:
+  sudoku:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - sudoku-solver
+
+tests:
+  sudoku-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - sudoku-solver
