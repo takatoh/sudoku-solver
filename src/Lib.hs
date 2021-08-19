@@ -140,3 +140,5 @@ split3 xs = [take 3 xs, take 3 $ drop 3 xs, drop 6 xs]
 
 sumCells :: [Cell] -> Int
 sumCells cs = sum [x | Confirmed x <- cs]
+
+--------------------------------------------------------------------------------
