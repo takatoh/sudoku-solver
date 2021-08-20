@@ -44,6 +44,7 @@ cellToChar (Perhaps xs)  = ' '
 solv :: Board -> Maybe Board
 solv board = case (findPerhaps b) of
                Just (Perhaps xs, pos) -> pickUp $ map (solv . replace b pos) xs
+               Just (Confirmed _, _)  -> judge b   -- This line never runs.
                Nothing                -> judge b
   where
     b = ommit board
