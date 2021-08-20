@@ -1,5 +1,5 @@
 name:                sudoku-solver
-version:             1.2.0
+version:             1.2.1
 github:              "takatoh/sudoku-solver"
 license:             MIT
 author:              "takatoh"
