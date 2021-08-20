@@ -41,10 +41,11 @@ cellToChar (Perhaps xs)  = ' '
 --------------------------------------------------------------------------------
 
 solv :: Board -> Maybe Board
-solv board = let b = ommit board in
-             case (findPerhaps b) of
+solv board = case (findPerhaps b) of
                Just (Perhaps xs, pos) -> pickUp $ map (solv . replace b pos) xs
                Nothing                -> judge b
+  where
+    b = ommit board
 
 
 ommit :: Board -> Board
@@ -56,17 +57,18 @@ ommitRows = map ommitRow
 
 
 ommitRow :: [Cell] -> [Cell]
-ommitRow xs = let cs = [c | Confirmed c <- xs] in
-              ommitRow' cs xs
+ommitRow xs = ommitRow' [c | Confirmed c <- xs] xs
   where
     ommitRow' :: [Int] -> [Cell] -> [Cell]
     ommitRow' ys []     = []
     ommitRow' ys (z:zs) = case z of
                             Confirmed a -> Confirmed a : ommitRow' ys zs
-                            Perhaps as  -> let bs = filter (\a -> not $ elem a ys) as in
-                                           if length bs == 1
-                                             then Confirmed (bs !! 0) : ommitRow' ys zs
-                                             else Perhaps bs : ommitRow' ys zs
+                            Perhaps as  -> if length bs == 1 then
+                                             Confirmed (bs !! 0) : ommitRow' ys zs
+                                           else
+                                             Perhaps bs : ommitRow' ys zs
+                              where
+                                bs = filter (\a -> not $ elem a ys) as
 
 
 ommitCols :: Board -> Board
@@ -103,19 +105,24 @@ pickUp (x:xs) = case x of
 
 
 replace :: Board -> (Int, Int) -> Int -> Board
-replace board (i, j) x = let f = take i board in
-                         let b = drop (i+1) board in
-                         f ++ [replace' (board !! i) j x] ++ b
+replace board (i, j) x = f ++ [replace' (board !! i) j x] ++ b
+  where
+    f = take i board
+    b = drop (i+1) board
 
 
 replace' :: [Cell] -> Int -> Int -> [Cell]
-replace' row j x = let f = take j row in
-                   let b = drop (j+1) row in
-                   f ++ [Confirmed x] ++ b
+replace' row j x = f ++ [Confirmed x] ++ b
+  where
+    f = take j row
+    b = drop (j+1) row
 
 
 judge :: Board -> Maybe Board
-judge b = if (and [judgeRows b, judgeCols b, judgeBlocks b]) then Just b else Nothing
+judge b = if (and [judgeRows b, judgeCols b, judgeBlocks b]) then
+            Just b
+          else
+             Nothing
 
 
 judgeRows :: Board -> Bool
