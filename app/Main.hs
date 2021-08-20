@@ -3,10 +3,19 @@ module Main where
 import Lib ( solv, parseBoard, printBoard )
 import System.Environment ( getArgs )
 import System.Console.GetOpt
+    ( getOpt,
+      usageInfo,
+      ArgDescr(NoArg),
+      ArgOrder(Permute),
+      OptDescr(..) )
 
 --------------------------------------------------------------------------------
 
+progName :: [Char]
 progName = "sudoku"
+
+
+version :: [Char]
 version  = "v1.2.0"
 
 
@@ -32,6 +41,7 @@ data Options = Options { optShowVersion :: Bool
                        }
 
 
+defaultOptions :: Options
 defaultOptions = Options { optShowVersion = False
                          , optShowHelp    = False
                          }

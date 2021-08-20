@@ -1,7 +1,7 @@
 module Lib where
 
-import Data.Char
-import Data.List
+import Data.Char ( ord, chr )
+import Data.List ( transpose )
 
 --------------------------------------------------------------------------------
 
