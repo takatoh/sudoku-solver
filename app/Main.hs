@@ -31,9 +31,11 @@ data Options = Options { optShowVersion :: Bool
                        , optShowHelp    :: Bool
                        }
 
+
 defaultOptions = Options { optShowVersion = False
                          , optShowHelp    = False
                          }
+
 
 options :: [OptDescr (Options -> Options)]
 options = [ Option ['v']      ["version"]
