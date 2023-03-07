@@ -1,4 +1,4 @@
-Ssudoku Solver
+Sudoku Solver
 =============
 
 数独とかナンプレとか呼ばれるパズルを解くプログラムです。
